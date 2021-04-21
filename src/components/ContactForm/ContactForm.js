@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import phoneBookAction from '../../redux/phoneBookActions.js';
+import { v4 as uuidv4 } from 'uuid';
 
 import s from './ContactForm.module.css';
 
@@ -15,7 +16,8 @@ const ContactForm = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(phoneBookAction.addContact({ name, phone }));
+		const id = uuidv4();
+		dispatch(phoneBookAction.addContact({ id, name, phone }));
 		setName('');
 		setPhone('');
 	};
